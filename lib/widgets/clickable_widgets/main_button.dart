@@ -1,4 +1,5 @@
 import 'package:acacus/helpers/consts.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class MainButton extends StatefulWidget {
@@ -22,7 +23,9 @@ class _MainButtonState extends State<MainButton> {
     Size size = MediaQuery.of(context).size;
     return GestureDetector(
       onTap: () {
-        print('tapped');
+        if (kDebugMode) {
+          print('tapped');
+        }
       },
       child: Padding(
         padding: const EdgeInsets.all(8.0),
