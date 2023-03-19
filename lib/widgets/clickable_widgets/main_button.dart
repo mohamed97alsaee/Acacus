@@ -1,5 +1,4 @@
 import 'package:acacus/helpers/consts.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class MainButton extends StatefulWidget {
@@ -8,11 +7,13 @@ class MainButton extends StatefulWidget {
       required this.text,
       required this.withBorder,
       this.widthFromScreen = 0.9,
-      required this.isloading});
+      required this.isloading,
+      required this.onPressed});
   final String text;
   final bool withBorder;
   final double widthFromScreen;
   final bool isloading;
+  final Function onPressed;
   @override
   State<MainButton> createState() => _MainButtonState();
 }
@@ -23,9 +24,7 @@ class _MainButtonState extends State<MainButton> {
     Size size = MediaQuery.of(context).size;
     return GestureDetector(
       onTap: () {
-        if (kDebugMode) {
-          print('tapped');
-        }
+        widget.onPressed();
       },
       child: Padding(
         padding: const EdgeInsets.all(8.0),

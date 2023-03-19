@@ -88,12 +88,13 @@ class _PlaceCardState extends State<PlaceCard> {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Row(
-                        children: const [
+                        children: [
                           MainButton(
                             text: 'Show More',
                             withBorder: true,
                             widthFromScreen: 0.33,
                             isloading: false,
+                            onPressed: () {},
                           ),
                         ],
                       ),
