@@ -8,12 +8,16 @@ class TextFieldWidget extends StatefulWidget {
       required this.controller,
       this.label,
       required this.validator,
-      required this.hintText});
+      required this.hintText,
+      this.obSecureText = false,
+      this.perfix});
   final TextEditingController controller;
   final String? label;
-  final String? hintText;
-
+  final String hintText;
   final FormFieldValidator<String?> validator;
+
+  final bool obSecureText;
+  final Widget? perfix;
   @override
   State<TextFieldWidget> createState() => _TextFieldWidgetState();
 }
@@ -21,63 +25,48 @@ class TextFieldWidget extends StatefulWidget {
 class _TextFieldWidgetState extends State<TextFieldWidget> {
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Directionality(
-        textDirection: TextDirection.rtl,
+    return Directionality(
+      textDirection: TextDirection.rtl,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
             if (widget.label != null)
               Row(
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Text(widget.label.toString(),
-                      style: const TextStyle(
-                          color: Colors.black,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600)),
+                  Text(
+                    widget.label ?? "",
+                    style: const TextStyle(
+                        fontSize: 16, fontWeight: FontWeight.w600),
+                  ),
                 ],
               ),
             const SizedBox(
               height: 5,
             ),
             TextFormField(
-              decoration: InputDecoration(
-                  filled: true,
-                  fillColor: mainColor.withOpacity(0.2),
-                  hintText: widget.hintText,
-                  hintStyle: TextStyle(color: mainColor.withOpacity(0.5)),
-                  // prefixIcon: Icon(Icons.email),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(16),
-                    borderSide:
-                        BorderSide(color: mainColor.withOpacity(0.2), width: 1),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(16),
-                    borderSide:
-                        BorderSide(color: mainColor.withOpacity(0.2), width: 1),
-                  ),
-                  focusColor: mainColor.withOpacity(0.2),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(16),
-                    borderSide:
-                        BorderSide(color: mainColor.withOpacity(0.2), width: 1),
-                  ),
-                  errorBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(16),
-                    borderSide:
-                        BorderSide(color: mainColor.withOpacity(0.2), width: 1),
-                  ),
-                  focusedErrorBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(16),
-                    borderSide:
-                        BorderSide(color: mainColor.withOpacity(0.2), width: 1),
-                  ),
-                  errorStyle: const TextStyle(color: Colors.red)),
-              keyboardType: TextInputType.emailAddress,
-              autovalidateMode: AutovalidateMode.onUserInteraction,
-              validator: widget.validator,
-            ),
+                controller: widget.controller,
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                validator: widget.validator,
+                obscureText: widget.obSecureText,
+                decoration: InputDecoration(
+                    suffixIcon: widget.perfix,
+                    fillColor: mainColor.withOpacity(0.2),
+                    filled: true,
+                    hintText: widget.hintText,
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(16),
+                        borderSide:
+                            BorderSide(color: mainColor.withOpacity(0.5))),
+                    focusColor: mainColor.withOpacity(0.5),
+                    errorBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(16),
+                        borderSide: const BorderSide(color: Colors.orange)),
+                    focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(16),
+                        borderSide:
+                            BorderSide(color: mainColor.withOpacity(0.5)))))
           ],
         ),
       ),
