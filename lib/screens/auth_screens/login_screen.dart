@@ -1,7 +1,7 @@
+import '../main_screens/tabs_screen.dart';
 import 'package:acacus/helpers/consts.dart';
 import 'package:acacus/screens/auth_screens/register_screen.dart';
 import 'package:acacus/screens/auth_screens/reset_password_screen.dart';
-import 'package:acacus/screens/main_screens/home_screen.dart';
 import 'package:acacus/widgets/clickable_widgets/main_button.dart';
 import 'package:acacus/widgets/input_widgets/text_field_widget.dart';
 import 'package:flutter/cupertino.dart';
@@ -134,7 +134,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           Navigator.pushReplacement(
                               context,
                               CupertinoPageRoute(
-                                  builder: ((context) => const HomeScreen())));
+                                  builder: ((context) => const TabsScreen())));
                         }),
                     MainButton(
                         text: "ليس لديك حساب؟ سجل الآن",

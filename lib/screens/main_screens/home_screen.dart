@@ -22,30 +22,33 @@ class _HomeScreenState extends State<HomeScreen> {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
-        appBar: AppBar(
-          centerTitle: false,
-          title: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
-              Text(
-                'مرحبا محمود!',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
-              ),
-              Text(
-                "استكشف معالم ليبيا بضغطة زر",
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
-              ),
-            ],
-          ),
-          actions: [
-            CustomIconButton(
-                onPressed: () {}, icon: Icons.favorite_border_outlined),
-            CustomIconButton(onPressed: () {}, icon: Icons.settings_outlined),
-          ],
-        ),
         body: SingleChildScrollView(
           child: Column(
             children: [
+              AppBar(
+                centerTitle: false,
+                title: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: const [
+                    Text(
+                      'مرحبا محمود!',
+                      style:
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+                    ),
+                    Text(
+                      "استكشف معالم ليبيا بضغطة زر",
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+                    ),
+                  ],
+                ),
+                actions: [
+                  CustomIconButton(
+                      onPressed: () {}, icon: Icons.favorite_border_outlined),
+                  CustomIconButton(
+                      onPressed: () {}, icon: Icons.settings_outlined),
+                ],
+              ),
               TextFieldWidget(
                   perfix: Icon(
                     Icons.search,

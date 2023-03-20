@@ -1,6 +1,6 @@
 import 'package:acacus/helpers/consts.dart';
 import 'package:acacus/screens/auth_screens/login_screen.dart';
-import 'package:acacus/screens/main_screens/home_screen.dart';
+import 'package:acacus/screens/main_screens/tabs_screen.dart';
 import 'package:acacus/widgets/static_widgets/intro_card.dart';
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
@@ -88,7 +88,7 @@ class _IntroScreenState extends State<IntroScreen> {
                   Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const HomeScreen()));
+                          builder: (context) => const TabsScreen()));
                 },
                 onDone: () {
                   Navigator.pushReplacement(
