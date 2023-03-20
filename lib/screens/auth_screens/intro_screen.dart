@@ -1,7 +1,6 @@
 import 'package:acacus/helpers/consts.dart';
 import 'package:acacus/screens/auth_screens/login_screen.dart';
 import 'package:acacus/screens/main_screens/home_screen.dart';
-import 'package:acacus/widgets/clickable_widgets/main_button.dart';
 import 'package:acacus/widgets/static_widgets/intro_card.dart';
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
@@ -86,13 +85,13 @@ class _IntroScreenState extends State<IntroScreen> {
                     color: mainColor.withOpacity(0.5),
                     activeColor: mainColor),
                 onSkip: () {
-                  Navigator.push(
+                  Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
                           builder: (context) => const HomeScreen()));
                 },
                 onDone: () {
-                  Navigator.push(
+                  Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
                           builder: (context) => const LoginScreen()));

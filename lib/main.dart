@@ -17,6 +17,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: ThemeData(
+          scaffoldBackgroundColor: Colors.white,
           primarySwatch: Colors.blue,
           textTheme: GoogleFonts.cairoTextTheme(),
           progressIndicatorTheme: ProgressIndicatorThemeData(

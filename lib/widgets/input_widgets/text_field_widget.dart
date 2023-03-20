@@ -51,22 +51,29 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
                 validator: widget.validator,
                 obscureText: widget.obSecureText,
                 decoration: InputDecoration(
-                    suffixIcon: widget.perfix,
-                    fillColor: mainColor.withOpacity(0.2),
-                    filled: true,
-                    hintText: widget.hintText,
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(16),
-                        borderSide:
-                            BorderSide(color: mainColor.withOpacity(0.5))),
-                    focusColor: mainColor.withOpacity(0.5),
-                    errorBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(16),
-                        borderSide: const BorderSide(color: Colors.orange)),
-                    focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(16),
-                        borderSide:
-                            BorderSide(color: mainColor.withOpacity(0.5)))))
+                  contentPadding: const EdgeInsets.symmetric(
+                      vertical: 13.0, horizontal: 16),
+                  suffixIcon: widget.perfix,
+                  fillColor: mainColor.withOpacity(0.2),
+                  filled: true,
+                  hintText: widget.hintText,
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(16),
+                      borderSide:
+                          BorderSide(color: mainColor.withOpacity(0.2))),
+                  focusColor: mainColor.withOpacity(0.2),
+                  errorBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(16),
+                      borderSide: const BorderSide(color: Colors.red)),
+                  focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(16),
+                      borderSide:
+                          BorderSide(color: mainColor.withOpacity(0.4))),
+                  enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(16),
+                      borderSide:
+                          BorderSide(color: mainColor.withOpacity(0.2))),
+                ))
           ],
         ),
       ),
