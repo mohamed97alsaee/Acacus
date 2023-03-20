@@ -42,7 +42,16 @@ class _PlaceCardState extends State<PlaceCard> {
                               topRight: Radius.circular(20)),
                           child: Image.network(
                             'https://tourslibya.com/wp-content/uploads/2018/01/libya-tours-jebel-acacaus-1.jpg',
+                            height: size.width * 0.5,
+                            width: size.width * 0.9,
                             fit: BoxFit.cover,
+                            loadingBuilder: (BuildContext context, Widget child,
+                                ImageChunkEvent? loadingProgress) {
+                              if (loadingProgress == null) return child;
+                              return const Center(
+                                child: CircularProgressIndicator(),
+                              );
+                            },
                           ),
                         ),
                         Padding(

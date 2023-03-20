@@ -17,6 +17,9 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  bool enableLoginBtn = false;
+
+  GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -53,84 +56,99 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Column(
-                children: [
-                  TextFieldWidget(
-                    label: 'البريد الإلكتروني',
-                    controller: emailController,
-                    hintText: 'أدخل البريد الالكتروني',
-                    validator: (String? value) {
-                      if (value!.isEmpty) {
-                        return "الرجاء ادخال البريد الالكتروني";
-                      }
-                      return null;
-                    },
-                  ),
-                  TextFieldWidget(
-                    label: 'كلمة المرور',
-                    hintText: 'أدخل كلمة المرور',
-                    controller: passwordController,
-                    validator: (String? value) {
-                      if (value!.isEmpty) {
-                        return "الرجاء ادخال كلمة المرور";
-                      }
-                      return null;
-                    },
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      GestureDetector(
-                        onTap: () {
+              child: Form(
+                key: loginFormKey,
+                onChanged: () {
+                  setState(() {
+                    enableLoginBtn = loginFormKey.currentState!.validate();
+                  });
+                },
+                child: Column(
+                  children: [
+                    TextFieldWidget(
+                      label: 'البريد الإلكتروني',
+                      controller: emailController,
+                      hintText: 'أدخل البريد الالكتروني',
+                      validator: (String? value) {
+                        if (value!.isEmpty) {
+                          return "الرجاء ادخال البريد الالكتروني";
+                        }
+                        if (!value.contains('@') || !value.contains('.com')) {
+                          return "الرجاء ادخال البريد الالكتروني بشكل صحيح";
+                        }
+                        return null;
+                      },
+                    ),
+                    TextFieldWidget(
+                      label: 'كلمة المرور',
+                      hintText: 'أدخل كلمة المرور',
+                      controller: passwordController,
+                      validator: (String? value) {
+                        if (value!.isEmpty) {
+                          return "الرجاء ادخال كلمة المرور";
+                        }
+                        if (value.length < 8) {
+                          return "كلمة المرور يجب ان تكون اكثر من 8 احرف";
+                        }
+                        return null;
+                      },
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                CupertinoPageRoute(
+                                    builder: ((context) =>
+                                        const ResetPasswordScreen())));
+                          },
+                          child: Text(
+                            "إعادة تعيين",
+                            style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w400,
+                                color: mainColor,
+                                decoration: TextDecoration.underline),
+                          ),
+                        ),
+                        const Text(
+                          "هل نسيت كلمة المرور ؟",
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: size.height * 0.05,
+                    ),
+                    MainButton(
+                        text: "تسجيل دخول",
+                        withBorder: false,
+                        isloading: false,
+                        isActive: enableLoginBtn,
+                        onPressed: () {
+                          Navigator.pushReplacement(
+                              context,
+                              CupertinoPageRoute(
+                                  builder: ((context) => const HomeScreen())));
+                        }),
+                    MainButton(
+                        text: "ليس لديك حساب؟ سجل الآن",
+                        withBorder: true,
+                        isloading: false,
+                        onPressed: () {
                           Navigator.push(
                               context,
                               CupertinoPageRoute(
                                   builder: ((context) =>
-                                      const ResetPasswordScreen())));
-                        },
-                        child: Text(
-                          "إعادة تعيين",
-                          style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w400,
-                              color: mainColor,
-                              decoration: TextDecoration.underline),
-                        ),
-                      ),
-                      const Text(
-                        "هل نسيت كلمة المرور ؟",
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: size.height * 0.05,
-                  ),
-                  MainButton(
-                      text: "تسجيل دخول",
-                      withBorder: false,
-                      isloading: false,
-                      onPressed: () {
-                        Navigator.pushReplacement(
-                            context,
-                            CupertinoPageRoute(
-                                builder: ((context) => const HomeScreen())));
-                      }),
-                  MainButton(
-                      text: "ليس لديك حساب؟ سجل الآن",
-                      withBorder: true,
-                      isloading: false,
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            CupertinoPageRoute(
-                                builder: ((context) =>
-                                    const RegisterScreen())));
-                      }),
-                ],
+                                      const RegisterScreen())));
+                        }),
+                  ],
+                ),
               ),
             )
           ],
