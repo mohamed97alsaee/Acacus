@@ -1,9 +1,11 @@
 import 'package:acacus/helpers/consts.dart';
+import 'package:acacus/main.dart';
 import 'package:acacus/screens/auth_screens/login_screen.dart';
 import 'package:acacus/screens/main_screens/tabs_screen.dart';
 import 'package:acacus/widgets/static_widgets/intro_card.dart';
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class IntroScreen extends StatefulWidget {
   const IntroScreen({super.key});
@@ -17,19 +19,26 @@ class _IntroScreenState extends State<IntroScreen> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
-    List<Widget> listPagesViewModel = const [
+    List<Widget> listPagesViewModel = [
       IntroCard(
           image: 'assets/intro1.png',
-          title: 'اكتشف جمال بلادنا الحبيبة ليبيا 🇱🇾'),
+          title: AppLocalizations.of(context)!.ione),
       IntroCard(
-          image: 'assets/intro2.png', title: 'احجز رحلات للمعالم المختلفة 🗿'),
+          image: 'assets/intro2.png',
+          title: AppLocalizations.of(context)!.itwo),
       IntroCard(
           image: 'assets/intro3.png',
-          title:
-              'ترغب بزيارة مكان ما؟ تعرف على المطاعم والخدمات الموجودة بالقرب منه 🍔'),
+          title: AppLocalizations.of(context)!.ithree),
     ];
 
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+          child: Text(AppLocalizations.of(context)!.localeName),
+          onPressed: () {
+            AppLocalizations.of(context)!.localeName == 'ar'
+                ? MyApp.setLocale(context, const Locale('en'))
+                : MyApp.setLocale(context, const Locale('ar'));
+          }),
       body: Column(
         children: [
           SafeArea(
@@ -46,29 +55,31 @@ class _IntroScreenState extends State<IntroScreen> {
               done: Container(
                 decoration: BoxDecoration(
                     color: mainColor, borderRadius: BorderRadius.circular(10)),
-                child: const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 25, vertical: 8),
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 25, vertical: 8),
                   child: Text(
-                    "دخول",
-                    style: TextStyle(color: Colors.white),
+                    AppLocalizations.of(context)!.enter,
+                    style: const TextStyle(color: Colors.white),
                   ),
                 ),
               ),
               next: Container(
                 decoration: BoxDecoration(
                     color: mainColor, borderRadius: BorderRadius.circular(10)),
-                child: const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 25, vertical: 8),
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 25, vertical: 8),
                   child: Text(
-                    "التالي",
-                    style: TextStyle(
+                    AppLocalizations.of(context)!.next,
+                    style: const TextStyle(
                       color: Colors.white,
                     ),
                   ),
                 ),
               ),
               skip: Text(
-                "تخطي",
+                AppLocalizations.of(context)!.skip,
                 style: TextStyle(color: mainColor, fontWeight: FontWeight.bold),
               ),
               showSkipButton: true,

@@ -20,7 +20,6 @@ class IntroCard extends StatelessWidget {
             title,
             style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
             textAlign: TextAlign.center,
-            textDirection: TextDirection.rtl,
           ),
         ),
       ],
