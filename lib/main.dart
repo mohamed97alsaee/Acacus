@@ -30,7 +30,6 @@ class MyApp extends StatelessWidget {
             titleTextStyle: const TextStyle(color: Colors.black),
           ),
         ),
-        home: const Directionality(
-            textDirection: TextDirection.rtl, child: SplashScreen()));
+        home: const SplashScreen());
   }
 }
